@@ -1,7 +1,7 @@
 const {predict} = require('../models/photoRecognitionModel')
 
 class photoRecognitionController {
-	static search(req, res){
+	static search(req, res, next){
 		predict(req.body.link, (err, response)=>{
 			console.log('Di controller', err, response)
 			if (err) {
@@ -9,11 +9,17 @@ class photoRecognitionController {
 					message: 'Error occured',
 					data : err
 				})
-			} else {				
-				res.status(200).json({
+			} else {
+				let foodList = []			;
+				for (var i = 0; i <= 5; i++) {
+					foodList.push(response.outputs[0].data.concepts[i].name)
+				}
+				req.headers.foodList = foodList;
+				next()
+				/*res.status(200).json({
 					message: 'Photo predicted',
-					data: response.outputs[0].data.concepts
-				})
+					data: foodList //response.outputs[0].data.concepts
+				})*/
 			}
 		})
 	}

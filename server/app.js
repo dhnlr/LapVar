@@ -6,8 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 
+const zomato = require('./routes/zomato');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var foodAnalyze = require('./routes/foodanalyze')
+
 
 var app = express();
 
@@ -29,6 +32,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/login', require('./routes/loginFb'))
 
+app.use('/api/analyze', foodAnalyze);
+app.use('/zomato', zomato);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

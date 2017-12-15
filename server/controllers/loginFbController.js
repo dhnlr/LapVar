@@ -7,29 +7,29 @@ const mongoose = require('mongoose')
 const {Facebook, FacebookApiException} = require('fb'),
     fb = new Facebook({version: 'v2.11'});
 
-const sendEmail=(username,useremail)=>{
-    const transporter=nodemailer.createTransport({
-        host:"smtp.gmail.com",
-        port:587,
-        secure:false,
-        requireTLS:true,
-        auth:{
-            user:"theliberty.noreply@gmail.com",
-            pass:"phase_1@hacktiv8.com"
-        }
-    });
-    const mailContent={
-        from:"noreply_indonesia@gmail.com",
-        to:useremail,
-        subject:"Terimakasih!",
-        text:`Terimakasih ${username} telah mendaftar sebagai beta user dengan email ${useremail}`
-    };
-    transporter.sendMail(mailContent,(err)=>{
-        if(err){
-            console.log("Email gagal terkirim!");
-        }
-    });
-}
+// const sendEmail=(username,useremail)=>{
+//     const transporter=nodemailer.createTransport({
+//         host:"smtp.gmail.com",
+//         port:587,
+//         secure:false,
+//         requireTLS:true,
+//         auth:{
+//             user:"theliberty.noreply@gmail.com",
+//             pass:"phase_1@hacktiv8.com"
+//         }
+//     });
+//     const mailContent={
+//         from:"noreply_indonesia@gmail.com",
+//         to:useremail,
+//         subject:"Terimakasih!",
+//         text:`Terimakasih ${username} telah mendaftar sebagai beta user dengan email ${useremail}`
+//     };
+//     transporter.sendMail(mailContent,(err)=>{
+//         if(err){
+//             console.log("Email gagal terkirim!");
+//         }
+//     });
+// }
 
 module.exports = {
   loginFb(req,res){
@@ -46,11 +46,10 @@ module.exports = {
     fb.api(req.body.authResponse.userID,{fields:["id","name","email","picture"]},(response)=>{
       if(!response || response.error){
         res.send({status:false});
-      } else{
-        // res.send({status:true,token:"loginToken"});
+      } else {
         User.count({email:response.email}).then((result)=>{
           console.log(result);
-          if(result === 0){ // Jika user telah ditemukan dalam database
+          if(result === 0){
             const user = new User({
                 fb_id:response.id,
                 email:response.email,
@@ -58,7 +57,6 @@ module.exports = {
                 profile:response.picture.data.url
             })
             .save((err,stats)=>{
-              console.log('kaskjalsjl');
               const loginToken = jwt.sign({id:stats._id},jwtSecret);
               res.send({status:true,token:loginToken});
             });
@@ -76,14 +74,14 @@ module.exports = {
         }
     });
   },
-  getUser:(req,res)=>{
-    const userId = jwt.verify(req.body.token,jwtSecret);
-    User.findOne({"_id":ObjectId(userId.id)},(err,data)=>{
-        if(err || data === null){
-            res.send({status:false});
-        } else{
-            res.send({status:true,user:data});
-        }
-    });
-  }
+  // getUser:(req,res)=>{
+  //   const userId = jwt.verify(req.body.token,jwtSecret);
+  //   User.findOne({"_id":ObjectId(userId.id)},(err,data)=>{
+  //       if(err || data === null){
+  //           res.send({status:false});
+  //       } else{
+  //           res.send({status:true,user:data});
+  //       }
+  //   });
+  // }
 };

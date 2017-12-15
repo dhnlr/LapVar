@@ -4,7 +4,6 @@ const app = new Clarifai.App({
 });
 
 const predict = (link, callback) => {
-	console.log('Masuk')
 	app.models.predict('bd367be194cf45149e75f01d59f77ba7', link).then(
 	  function(response) {
 	    callback(null, response);

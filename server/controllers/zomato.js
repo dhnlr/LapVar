@@ -18,11 +18,12 @@ class ZomatoController {
   }
 
   static getAreaRestaurant(req, res) {
-    console.log('di dalem controller')
     zomatoModel.area(req.query.lat, req.query.lng)
       .then(result => {
         let parsJson = JSON.parse(result)
-        let array = ['burger']
+        let array = req.query.food.split(',')
+
+        // let array = ['burger']
         parsJson.nearby_restaurants.forEach(function (dataRestaurant) {
           let dataCuisines = dataRestaurant.restaurant.cuisines.toLowerCase()
 

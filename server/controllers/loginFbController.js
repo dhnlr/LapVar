@@ -42,6 +42,7 @@ module.exports = {
   },
   login:(req,res)=>{
     // console.log(req.body);
+    req.header.tokenFb = req.body.authResponse.accessToken
     fb.setAccessToken(req.body.authResponse.accessToken);
     fb.api(req.body.authResponse.userID,{fields:["id","name","email","picture"]},(response)=>{
       if(!response || response.error){
@@ -63,6 +64,7 @@ module.exports = {
             // sendEmail(response.name,response.email);
           }
           else {
+            console.log(result);
             User.findOne({email:response.email},(err,data)=>{
                 const loginToken = jwt.sign({id:data._id},jwtSecret);
                 res.send({status:true,token:loginToken});

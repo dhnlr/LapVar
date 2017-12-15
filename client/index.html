@@ -11,6 +11,10 @@
 </head>
 
 <body>
+  <div class="fb" >
+    <button type="button" id="login" onclick="facebookLogin()">Login</button>
+  </div>
+
   <div class="menu">
     <div class="ui secondary  menu">
       <button onclick="homeTimeline()" class="active item">
@@ -35,7 +39,7 @@
             </div>
           </div>
         </div>
-        <a class="ui item">
+        <a class="ui item" id= "logout" onclick="logout()">
           Logout
         </a>
       </div>
@@ -52,6 +56,17 @@
   <div id="lang"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  $(document).ready(function() {
+    if(localStorage.getItem("login_token") !== null){
+      $("#login").hide()
+    } else {
+      $("#logout").hide()
+    }
+  })
+</script>
+<script src="./lib/fbLogin.js"></script>
 <script src="./lib/index.js"></script>
 
 </html>

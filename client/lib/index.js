@@ -44,5 +44,9 @@ function initialize(selector) {
     alert("Geocoder failed");
   }
 
-  
+  $(this).on("click","#logout",function(event){
+        event.preventDefault();
+        localStorage.removeItem("ui item");
+        window.location.reload();
+    });
 }

@@ -7,30 +7,6 @@ const mongoose = require('mongoose')
 const {Facebook, FacebookApiException} = require('fb'),
     fb = new Facebook({version: 'v2.11'});
 
-// const sendEmail=(username,useremail)=>{
-//     const transporter=nodemailer.createTransport({
-//         host:"smtp.gmail.com",
-//         port:587,
-//         secure:false,
-//         requireTLS:true,
-//         auth:{
-//             user:"theliberty.noreply@gmail.com",
-//             pass:"phase_1@hacktiv8.com"
-//         }
-//     });
-//     const mailContent={
-//         from:"noreply_indonesia@gmail.com",
-//         to:useremail,
-//         subject:"Terimakasih!",
-//         text:`Terimakasih ${username} telah mendaftar sebagai beta user dengan email ${useremail}`
-//     };
-//     transporter.sendMail(mailContent,(err)=>{
-//         if(err){
-//             console.log("Email gagal terkirim!");
-//         }
-//     });
-// }
-
 module.exports = {
   loginFb(req,res){
     User.find().then((result)=>{
@@ -66,6 +42,7 @@ module.exports = {
           else {
             console.log(result);
             User.findOne({email:response.email},(err,data)=>{
+              // console.log(err)
                 const loginToken = jwt.sign({id:data._id},jwtSecret);
                 res.send({status:true,token:loginToken});
             });

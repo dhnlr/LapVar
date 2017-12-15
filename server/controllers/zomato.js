@@ -31,7 +31,6 @@ class ZomatoController {
             if(dataCuisines.indexOf(foods) !== -1){
               console.log('>>>>>>>', dataCuisines, '||', foods)
               arrResult.push(dataRestaurant.restaurant)
-              // res.send(parsJson.nearby_restaurants)
               counter++;
             }
           })

@@ -4,6 +4,6 @@ var foodAnalyzeController = require('../controllers/foodAnalyzeController')
 var photoRecognitionController = require('../controllers/photoRecognitionController')
 
 /* GET users listing. */
-router.post('/', photoRecognitionController.search, foodAnalyzeController.search);
+router.post('/', photoRecognitionController.search);
 
 module.exports = router;

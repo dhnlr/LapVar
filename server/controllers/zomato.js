@@ -22,27 +22,26 @@ class ZomatoController {
       .then(result => {
         let parsJson = JSON.parse(result)
         let array = req.query.food.split(',')
-        console.log(array, 'Ini array')
-        let parsJson = parsJson.nearby_restaurants.filter( restaurant =>{
-          console.log('>>>>>>>',restaurant.cuisines, array)
-          for (cuisine of restaurant.cuisines) {
-            if (array.indexOf(cuisine) >= 0) {
-              return true
-            }
-          }
-          return false
-        })
-        // let array = ['burger', 'sushi', 'salmon']
-        /*parsJson.nearby_restaurants.forEach(function (dataRestaurant) {
+        let counter = 0;
+        let arrResult = []
+        parsJson.nearby_restaurants.forEach(function (dataRestaurant) {
           let dataCuisines = dataRestaurant.restaurant.cuisines.toLowerCase()
           array.forEach(foods => {
+            
             if(dataCuisines.indexOf(foods) !== -1){
-              res.send(parsJson.nearby_restaurants)
+              console.log('>>>>>>>', dataCuisines, '||', foods)
+              arrResult.push(dataRestaurant.restaurant)
+              // res.send(parsJson.nearby_restaurants)
+              counter++;
             }
           })
-          
-        }, this)*/;
-        
+        });
+        if (counter == 0) {
+          res.send('')
+        } else {
+          console.log(arrResult)
+          res.send(arrResult)
+        }
       })
       .catch(err => {console.log(err)})
   }

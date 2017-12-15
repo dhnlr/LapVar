@@ -10,16 +10,16 @@ class photoRecognitionController {
 					data : err
 				})
 			} else {
-				let foodList = []			;
+				let foodList = [];
 				for (var i = 0; i <= 10; i++) {
 					foodList.push(response.outputs[0].data.concepts[i].name)
 				}
 				req.headers.foodList = foodList;
+				res.status(200).json({
+					message: 'Bisa',
+					data : foodList
+				})
 				next()
-				/*res.status(200).json({
-					message: 'Photo predicted',
-					data: foodList //response.outputs[0].data.concepts
-				})*/
 			}
 		})
 	}

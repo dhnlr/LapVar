@@ -16,10 +16,13 @@
     "express": "~4.15.5",
     "fb": "^2.0.0",
     "jade": "~1.11.0",
-    "mongoose": "^4.13.7",
+    "jsonwebtoken": "^8.1.0",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.10.8",
     "morgan": "~1.9.0",
+    "nodemailer": "^4.4.1",
     "serve-favicon": "~2.4.5",
-    "unirest": "^0.5.1"
+    "unirest": "^0.5.1",
     "zomato": "^1.1.0"
   }
 }

@@ -14,6 +14,7 @@ var foodAnalyze = require('./routes/foodanalyze')
 
 var app = express();
 
+require('dotenv').config();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/login', require('./routes/loginFb'))
+
 app.use('/api/analyze', foodAnalyze);
 app.use('/zomato', zomato);
 
@@ -47,7 +50,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;

@@ -29,7 +29,6 @@ class ZomatoController {
           array.forEach(foods => {
             
             if(dataCuisines.indexOf(foods) !== -1){
-              console.log('>>>>>>>', dataCuisines, '||', foods)
               arrResult.push(dataRestaurant.restaurant)
               counter++;
             }

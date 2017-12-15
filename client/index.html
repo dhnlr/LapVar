@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" async/>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyA6YQX7n9GIFdpCsZ6LERQq4866vAAASQc"></script>
+  <title>LapVar</title>
+</head>
+
+<body>
+  <div class="menu">
+    <div class="ui secondary  menu">
+      <button onclick="homeTimeline()" class="active item">
+        Home
+      </button>
+      <button onclick="profileTimeline()" class="item">
+        Profile
+      </button>
+      <a class="item">
+        Friends
+      </a>
+      <div class="right menu">
+        <div class="ui right action left icon input">
+          <i class="search icon"></i>
+          <input type="text" placeholder="Search">
+          <div class="ui basic floating dropdown button">
+            <div class="text">This Page</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">This Organization</div>
+              <div class="item">Entire Site</div>
+            </div>
+          </div>
+        </div>
+        <a class="ui item">
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="hometimeline" class="ui list">
+  </div> -->
+  <p><button onclick="initialize()">Show my location</button></p>
+  <div id="out"></div>
+  <div id="long"></div>
+  <div id="lang"></div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="./lib/index.js"></script>
+
+</html>

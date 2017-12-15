@@ -11,7 +11,7 @@ class photoRecognitionController {
 				})
 			} else {
 				let foodList = []			;
-				for (var i = 0; i <= 5; i++) {
+				for (var i = 0; i <= 10; i++) {
 					foodList.push(response.outputs[0].data.concepts[i].name)
 				}
 				req.headers.foodList = foodList;

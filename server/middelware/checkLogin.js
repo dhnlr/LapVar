@@ -4,7 +4,7 @@ function checkLogin(req,res,next) {
   }
   else {
     res.json({
-      message : "you must login"
+      message : 1
     })
   }
 
